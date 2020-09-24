@@ -26,7 +26,8 @@ class App extends Component {
     console.log("adding")
     let currentObstacles = [...this.state.obstacles]
     const obstacle = <Obstacle key={Math.random().toString(36).substring(2, 15)}/>
-    currentObstacles.push(obstacle)
+    const obstacleFlipped = <Obstacle flipped key={Math.random().toString(36).substring(2, 15)}/>
+    currentObstacles.push(obstacle,obstacleFlipped)
     this.setState({
       ...this.state,
       obstacles: currentObstacles
