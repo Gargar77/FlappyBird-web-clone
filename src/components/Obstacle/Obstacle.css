@@ -3,6 +3,6 @@
     height: 100px;
     background-color: greenyellow;
     position: absolute;
-    left: 20px;
-    bottom: 0;
+    right: -50px;
+    transition: right  60ms;
 }
