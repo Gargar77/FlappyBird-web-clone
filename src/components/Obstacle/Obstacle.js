@@ -1,6 +1,6 @@
 import './Obstacle.css';
 import React, {Component} from 'react';
-
+import {connect} from 'react-redux';
 
 class Obstacle extends Component {
 
@@ -14,7 +14,7 @@ class Obstacle extends Component {
                 this.moveObstacle();
             }
         },50)
-       
+    //    console.log(this.props.globalState);
     }
 
     moveObstacle = () => {
@@ -58,5 +58,11 @@ class Obstacle extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        globalState: state
+    }
+}
 
-export default Obstacle;
+
+export default connect(mapStateToProps)(Obstacle);
