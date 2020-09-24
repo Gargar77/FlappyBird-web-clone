@@ -1,7 +1,6 @@
 import './Obstacle.css';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
 class Obstacle extends Component {
 
     state = {
@@ -37,15 +36,20 @@ class Obstacle extends Component {
     getNewPos() {
         return {right: `${this.state.rightPos}%`}
     }
+
+    getRandomHeight() {
+        return {height:`${this.props.height}px`};
+    }
    
 
     render() {
+        const randHeight = this.getRandomHeight();
         const orientation = this.getOrientation();
         const currentRightPos= this.getNewPos();
-
         const activeStyle = {
             ...orientation,
-            ...currentRightPos
+            ...currentRightPos,
+            ...randHeight
         }
         
         return (

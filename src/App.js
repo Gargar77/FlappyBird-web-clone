@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Obstacle from './components/Obstacle/Obstacle';
 import {connect} from 'react-redux';
+import {getRandomInt} from './utils/math';
 
 class App extends Component {
 
@@ -23,10 +24,13 @@ class App extends Component {
   }
 
   addObstacle() {
-    console.log("adding")
     let currentObstacles = [...this.state.obstacles]
-    const obstacle = <Obstacle key={Math.random().toString(36).substring(2, 15)}/>
-    const obstacleFlipped = <Obstacle flipped key={Math.random().toString(36).substring(2, 15)}/>
+    const obstacle = <Obstacle 
+                        key={Math.random().toString(36).substring(2, 15)}
+                        height={getRandomInt(100,280)}/>
+    const obstacleFlipped = <Obstacle flipped 
+                        key={Math.random().toString(36).substring(2, 15)}
+                        height={getRandomInt(100,280)}/>
     currentObstacles.push(obstacle,obstacleFlipped)
     this.setState({
       ...this.state,
