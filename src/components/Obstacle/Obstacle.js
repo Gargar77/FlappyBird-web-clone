@@ -14,7 +14,6 @@ class Obstacle extends Component {
                 this.moveObstacle();
             }
         },50)
-    //    console.log(this.props.globalState);
     }
 
     moveObstacle = () => {
