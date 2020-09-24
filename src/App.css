@@ -1,10 +1,19 @@
 .game-container {
-height: 70vh;
-background-color: lightblue;
-margin: 70px auto;
+  height: 70vh;
+  background-color: lightblue;
+  margin: 70px auto;
+  overflow: hidden;
 }
 
+.ground {
+  background-color: brown;
+  height: 20%;
+}
 
+.sky {
+  height: 80%;
+  position: relative;
+}
 
 @media screen and  (min-width: 500px) {
   .game-container {
