@@ -11,13 +11,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    setInterval(()=> {
-      this.checkObstacles();
-    },1000)
+      if (this.props.gameState.started) {
+        setInterval(()=> {
+        this.checkObstacles();
+      },1000)
+    }
   }
 
   checkObstacles = () => {
-    if (!this.props.globalState)  return;
+    if (!this.props.gameState.started)  return;
     if (this.state.obstacles.length === 0) {
       this.addObstacle();
     }
@@ -54,7 +56,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    globalState:state
+    gameState:state
   }
 }
 

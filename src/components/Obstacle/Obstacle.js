@@ -9,7 +9,7 @@ class Obstacle extends Component {
 
     componentDidMount() {
         setInterval(()=> {
-            if (this.state.rightPos <= 110 && this.props.globalState.started) {
+            if (this.state.rightPos <= 110 && this.props.gameState.started) {
                 this.moveObstacle();
             }
         },50)
@@ -63,7 +63,7 @@ class Obstacle extends Component {
 
 const mapStateToProps = state => {
     return {
-        globalState: state
+        gameState: state
     }
 }
 
