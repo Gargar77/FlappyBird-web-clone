@@ -10,7 +10,7 @@ class Obstacle extends Component {
 
     componentDidMount() {
         setInterval(()=> {
-            if (this.state.rightPos <= 110) {
+            if (this.state.rightPos <= 110 && this.props.globalState.started) {
                 this.moveObstacle();
             }
         },50)

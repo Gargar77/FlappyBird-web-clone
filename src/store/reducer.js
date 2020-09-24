@@ -1,7 +1,7 @@
 
 
 const initialState = {
-    startGame:false
+    started:true
 }
 
 const reducer = (state = initialState,action) => {
