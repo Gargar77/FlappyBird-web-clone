@@ -22,22 +22,42 @@ class App extends Component {
     if (!this.props.gameState.started)  return;
     if (this.state.obstacles.length === 0) {
       this.addObstacle();
+      return;
     }
   }
 
   addObstacle() {
-    let currentObstacles = [...this.state.obstacles]
+    const currentObstacles = [...this.state.obstacles]    
+    const heights = this.getsafeObstacleHeights();
+
     const obstacle = <Obstacle 
                         key={Math.random().toString(36).substring(2, 15)}
-                        height={getRandomInt(100,280)}/>
+                        height={heights[0]}/>
     const obstacleFlipped = <Obstacle flipped 
                         key={Math.random().toString(36).substring(2, 15)}
-                        height={getRandomInt(100,280)}/>
+                        height={heights[1]}/>
+
     currentObstacles.push(obstacle,obstacleFlipped)
     this.setState({
       ...this.state,
       obstacles: currentObstacles
     })
+  }
+
+  getsafeObstacleHeights() {
+    let heightsAreSafe = false
+    let randHeight1,randHeight2;
+    while (!heightsAreSafe) {
+  // height diff must be greater than 35 to be safe to traverse
+       randHeight1 = getRandomInt(160,300);
+       randHeight2 = getRandomInt(160,300);
+
+      if ((Math.abs(randHeight1 - randHeight2)) > 50) {
+        heightsAreSafe = true;
+      }
+    }
+
+    return [randHeight1,randHeight2];
   }
 
   render() {
