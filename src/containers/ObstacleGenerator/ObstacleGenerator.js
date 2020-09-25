@@ -22,13 +22,11 @@ class ObstacleGenerator extends Component {
             this.intervals.push(
                   setInterval(()=> {
                 this.addObstacle();
-                console.log("checking")
               },2000));
     
               this.intervals.push(
                 setInterval(()=> {
               this.removeObstaclePair();
-              console.log("removing")
             },3000));
           }
       }
@@ -70,10 +68,8 @@ class ObstacleGenerator extends Component {
       removeObstaclePair = () => {
         if (!this.hasMaxObstacles()) return;
         let currentObstacles = [...this.state.obstacles];
-        console.log("before:",currentObstacles)
         currentObstacles.shift();
         currentObstacles.shift();
-        console.log("after:",currentObstacles)
     
     
         this.setState ({
@@ -89,8 +85,8 @@ class ObstacleGenerator extends Component {
       // height diff must be greater than 35 to be safe to traverse
            randHeight1 = getRandomInt(160,280);
            randHeight2 = getRandomInt(160,280);
-    
-          if ((Math.abs(randHeight1 - randHeight2)) > 50) {
+            
+          if ((Math.abs(randHeight2 - randHeight1)) > 50) {
             heightsAreSafe = true;
           }
         }
