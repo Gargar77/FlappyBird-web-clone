@@ -22,7 +22,7 @@ class ObstacleGenerator extends Component {
             this.intervals.push(
                   setInterval(()=> {
                 this.addObstacle();
-              },2000));
+              },2800));
     
               this.intervals.push(
                 setInterval(()=> {
@@ -83,8 +83,8 @@ class ObstacleGenerator extends Component {
         let randHeight1,randHeight2;
         while (!heightsAreSafe) {
       // height diff must be greater than 35 to be safe to traverse
-           randHeight1 = getRandomInt(20,500);
-           randHeight2 = getRandomInt(20,500);
+           randHeight1 = getRandomInt(30,500);
+           randHeight2 = getRandomInt(30,500);
             
         //   if ((Math.abs(randHeight2 - randHeight1)) > 50) {
         //     heightsAreSafe = true;

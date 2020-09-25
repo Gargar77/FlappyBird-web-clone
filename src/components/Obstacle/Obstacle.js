@@ -1,6 +1,5 @@
 import './Obstacle.css';
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 class Obstacle extends Component {
     constructor(props) {
         super(props)
@@ -14,7 +13,7 @@ class Obstacle extends Component {
     componentDidMount() {
         this._isMounted = true;
         this.interval = setInterval(()=> {
-            if (this.state.rightPos <= 110 && this.props.gameState.started) {
+            if (this.state.rightPos <= 110) {
                 this.moveObstacle();
             }
         },50)
@@ -71,11 +70,5 @@ class Obstacle extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        gameState: state
-    }
-}
 
-
-export default connect(mapStateToProps)(Obstacle);
+export default Obstacle;
