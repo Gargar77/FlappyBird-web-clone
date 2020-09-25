@@ -83,14 +83,19 @@ class ObstacleGenerator extends Component {
         let randHeight1,randHeight2;
         while (!heightsAreSafe) {
       // height diff must be greater than 35 to be safe to traverse
-           randHeight1 = getRandomInt(160,280);
-           randHeight2 = getRandomInt(160,280);
+           randHeight1 = getRandomInt(20,500);
+           randHeight2 = getRandomInt(20,500);
             
-          if ((Math.abs(randHeight2 - randHeight1)) > 50) {
+        //   if ((Math.abs(randHeight2 - randHeight1)) > 50) {
+        //     heightsAreSafe = true;
+        //   }
+            let gapLength = (randHeight1 + randHeight2) / 2
+        if (( gapLength >= 200 && gapLength < 230)) {
+        console.log((randHeight1 + randHeight2) / 2)
             heightsAreSafe = true;
-          }
         }
-    
+
+        }
         return [randHeight1,randHeight2];
       }
 
