@@ -5,28 +5,51 @@ import {connect} from 'react-redux';
 import {getRandomInt} from './utils/math';
 
 class App extends Component {
-
+  constructor(props) {
+    super(props)
+    this._isMounted = false
+    this.intervals = []
+  }
   state= {
-    obstacles:[]
+    obstacles:[],
+    maxViewableObstacles: 6,
+    intervals: []
   }
 
   componentDidMount() {
-      if (this.props.gameState.started) {
-        setInterval(()=> {
-        this.checkObstacles();
-      },1000)
+      this._isMounted = true
+      if (this.props.gameState.started && this._isMounted) {
+        this.intervals.push(
+              setInterval(()=> {
+            this.addObstacle();
+            console.log("checking")
+          },2000));
+
+          this.intervals.push(
+            setInterval(()=> {
+          this.removeObstaclePair();
+          console.log("removing")
+        },3000));
+      }
+  }
+
+  componentWillUnmount() {
+    this.isMounted = false;
+    for (let i = 0; i < this.state.intervals.lenght;i++) {
+      clearInterval(this.state.intervals[i]);
     }
   }
 
-  checkObstacles = () => {
-    if (!this.props.gameState.started)  return;
-    if (this.state.obstacles.length === 0) {
-      this.addObstacle();
-      return;
-    }
+
+
+  hasMaxObstacles() {
+    const obstaclesInGame = this.state.obstacles.length;
+    const maxObstaclesAllowed = this.state.maxViewableObstacles
+    return obstaclesInGame > maxObstaclesAllowed ? true : false;
   }
 
   addObstacle() {
+    if (this.hasMaxObstacles()) return;
     const currentObstacles = [...this.state.obstacles]    
     const heights = this.getsafeObstacleHeights();
 
@@ -44,13 +67,28 @@ class App extends Component {
     })
   }
 
+  removeObstaclePair = () => {
+    if (!this.hasMaxObstacles()) return;
+    let currentObstacles = [...this.state.obstacles];
+    console.log("before:",currentObstacles)
+    currentObstacles.shift();
+    currentObstacles.shift();
+    console.log("after:",currentObstacles)
+
+
+    this.setState ({
+      ...this.state,
+      obstacles:currentObstacles
+    })
+  }
+
   getsafeObstacleHeights() {
     let heightsAreSafe = false
     let randHeight1,randHeight2;
     while (!heightsAreSafe) {
   // height diff must be greater than 35 to be safe to traverse
-       randHeight1 = getRandomInt(160,300);
-       randHeight2 = getRandomInt(160,300);
+       randHeight1 = getRandomInt(160,280);
+       randHeight2 = getRandomInt(160,280);
 
       if ((Math.abs(randHeight1 - randHeight2)) > 50) {
         heightsAreSafe = true;

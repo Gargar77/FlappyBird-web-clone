@@ -2,17 +2,27 @@ import './Obstacle.css';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 class Obstacle extends Component {
-
+    constructor(props) {
+        super(props)
+        this._isMounted = false
+        this.interval = null;
+    }
     state = {
         rightPos:-20
     }
 
     componentDidMount() {
-        setInterval(()=> {
+        this._isMounted = true;
+        this.interval = setInterval(()=> {
             if (this.state.rightPos <= 110 && this.props.gameState.started) {
                 this.moveObstacle();
             }
         },50)
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+        clearInterval(this.interval);
     }
 
     moveObstacle = () => {
