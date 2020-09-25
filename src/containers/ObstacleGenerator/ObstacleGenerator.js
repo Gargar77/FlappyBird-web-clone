@@ -91,7 +91,6 @@ class ObstacleGenerator extends Component {
         //   }
             let gapLength = (randHeight1 + randHeight2) / 2
         if (( gapLength >= 200 && gapLength < 230)) {
-        console.log((randHeight1 + randHeight2) / 2)
             heightsAreSafe = true;
         }
 
